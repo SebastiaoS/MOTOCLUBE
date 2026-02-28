@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DARKTOOLS MC - Dark Sempre Sempre Dark</title>
+
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome COMPLETO para os ícones aparecerem -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com">
+    <!-- Google Fonts COMPLETO -->
+    <link href="https://fonts.googleapis.com" rel="stylesheet">
+</head>
+
+
+<body>
+
+    <header>
+        <!-- Navegação (Opcional, mas recomendado para SEO) -->
+    </header>
+
+    <section class="hero">
+        <video autoplay muted loop playsinline id="video-fundo" poster="./imagens/poster-video.jpg">
+            <source src="./imagens/mideas/viagemrio.mp4" type="video/mp4">
+            Seu navegador não suporta vídeos.
+        </video>
+        <div class="mascara"></div>
+        <img src="./imagens/DARK TOOLS MOTORCYCLE FLAG.jpg" alt="Logo Darktools MC" class="logo">
+    </section>
+
+    <section class="sobre">
+        <div class="container-texto">
+            <h2>ESTRADA, IRMANDADE E LIBERDADE</h2>
+            <p>O Darktools MC não é apenas um grupo de motociclistas. É o ponto de encontro de quem vive sob duas rodas
+                e entende que a jornada importa mais que o destino.</p>
+            <div class="linha-detalhe"></div>
+        </div>
+    </section>
+    <section class="galeria">
+        <section class="fotos">
+            <h2>NOSSA CAMINHADA</h2>
+
+            <div class="filtros">
+                <button onclick="filtrar(' História')">
+                    HISTÓRIA</button>
+                <button onclick="filtrar('eventos')">EVENTOS</button>
+                <button onclick="filtrar('viagens')">VIAGENS</button>
+                <button onclick="filtrar('resenhas')">RESENHAS</button>
+            </div>
+        </section>
+        <section class="bx-carrossel">
+
+            <div class="container" style="--width:150px; --height:150px; --quantity:7;">
+                <div class="carrossel">
+
+                    <div class="item" style="--delay: 2s"><img src="./imagens/carrossel/c1.jpeg" alt=""></div>
+                    <div class="item" style="--delay: 4s"><img src="./imagens/carrossel/c2.jpeg" alt=""></div>
+                    <div class="item" style="--delay: 6s"><img src="./imagens/carrossel/c3.jpeg" alt=""></div>
+                    <div class="item" style="--delay: 8s"><img src="./imagens/carrossel/c4.jpeg" alt=""></div>
+                    <div class="item" style="--delay: 10s"><img src="./imagens/carrossel/c5.jpeg" alt=""></div>
+                    <div class="item" style="--delay: 12s"><img src="./imagens/carrossel/c6.jpeg" alt=""></div>
+                    <div class="item" style="--delay: 14s"><img src="./imagens/carrossel/c7.jpeg" alt=""></div>
+                </div>
+            </div>
+        </section>
+    </section>
+    <!-- Modal para a foto aumentada 
+    <div id="modal-foto" class="modal">
+        <span class="fechar" onclick="fecharFoto()">&times;</span>
+        <img id="img-modal" src="" alt="Foto ampliada">
+    </div>
+-->
+    <footer class="contato">
+        <div class="contato-container">
+            <div class="contato-info">
+
+
+                <div class="redes-sociais">
+
+                    <!-- INSTA -->
+                    <a href="https://www.instagram.com/dark.tools.mc/" class="icon-link" target="_blank"
+                        aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                        <img src="./imagens/logo/instagram.png" alt="instagram" class="icon-instagram">
+                    </a>
+                    <!-- WTSP -->
+                    <a href="https://wa.me/5531997800098" class="icon-link" target="_blank" aria-label="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                        <img src="./imagens/logo/whatsapp (1).png" alt="whatsapp" class="icon-whatsapp">
+                    </a>
+                    <!-- EMAIL -->
+                    <a href="mailto:darktoolsmc@gmail.com" class="icon-link" aria-label="E-mail">
+                        <i class="fas fa-envelope"></i>
+                        <img src="./imagens/logo/o-email.png" alt="email" class="icon-email">
+                    </a>
+                </div>
+            </div>
+
+            <div class="mapa-sede">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1398.9908849140254!2d-44.186579571438486!3d-19.959161598834882!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa6c33aad3edf2f%3A0xebb2e96b9d46d1d8!2sTutu%20Motorcycle%20Oficina%2FRock%20Bar!5e1!3m2!1spt-BR!2sbr!4v1772029152508!5m2!1spt-BR!2sbr"
+                    width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Lógica de Filtro Simples
+        function filtrar(categoria) {
+            const itens = document.querySelectorAll('.item');
+            itens.forEach(item => {
+                if (categoria === 'todos' || item.classList.contains(categoria)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Lógica do Modal
+        function abrirFoto(elemento) {
+            const modal = document.getElementById('modal-foto');
+            const imgModal = document.getElementById('img-modal');
+            const srcOriginal = elemento.querySelector('img').src;
+
+            modal.style.display = "flex";
+            imgModal.src = srcOriginal;
+        }
+
+        function fecharFoto() {
+            document.getElementById('modal-foto').style.display = "none";
+        }
+    </script>
+</body>
+
+</html>

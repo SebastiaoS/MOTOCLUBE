@@ -1,0 +1,480 @@
+/* 1. SETUP DE ENGENHARIA (VARIÁVEIS) */
+:root {
+    --cor-primaria: #d32f2f;
+    /* O seu Vermelho Motor */
+    --cor-fundo-abs: #000000;
+    /* Preto Puro (Fundo) */
+    --cor-fundo-suave: #1a1a1a;
+    /* Cinza Escuro (Seções) */
+    --cor-borda: #333333;
+    /* Cinza para divisórias */
+    --cor-texto-principal: #ffffff;
+    --cor-texto-apoio: #cccccc;
+    --transicao-padrao: 0.3s ease;
+}
+
+/* 2. RESET GLOBAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--cor-fundo-abs);
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    /* Fallback melhorado */
+    color: var(--cor-texto-principal);
+    line-height: 1.6;
+}
+
+/* 3. HERO SECTION (VÍDEO E LOGO) */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#video-fundo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    filter: grayscale(60%) brightness(0.5);
+    /* Master Tip: Escurecer o vídeo destaca a logo */
+    z-index: 1;
+}
+
+.mascara {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.452);
+    z-index: 2;
+}
+
+.logo {
+    height: 35%;
+
+    width: auto;
+    z-index: 3;
+    position: relative;
+    transition: transform var(--transicao-padrao);
+}
+
+.logo:hover {
+    transform: scale(2);
+    /* Feedback visual sutil */
+}
+
+/* 4. SOBRE NÓS */
+.sobre {
+    background-color: var(--cor-fundo-suave);
+    padding: 100px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Garante centralização total */
+    text-align: center;
+    width: 100%;
+}
+
+.container-texto {
+      /* O SEGREDO: 90% da tela no celular, mas no máximo 800px no PC */
+    width: 90%; 
+    max-width: 800px; 
+    margin: 0 auto;
+}
+
+.container-texto p {
+    /* CLAMP PARA TEXTO: Garante legibilidade em qualquer dispositivo */
+    font-size: clamp(1rem, 2.5vw, 1.2rem); 
+    color: var(--cor-texto-apoio);
+    line-height: 1.8; /* Espaçamento entre linhas para leitura confortável */
+    max-width: 700px; /* Evita que a linha de leitura fique longa demais no PC */
+    margin: 0 auto;
+}
+
+.container-texto h2 {
+    font-size: clamp(1.8rem, 5vw, 2.5rem); /* Fonte dinâmica: diminui no celular e cresce no PC */
+    letter-spacing: 4px;
+    margin-bottom: 25px;
+    color: var(--cor-primaria);
+    text-transform: uppercase;
+}
+
+.container-texto p {
+      font-size: clamp(1rem, 3vw, 1.2rem); /* Texto ajustável */
+    color: var(--cor-texto-apoio);
+    line-height: 1.8;
+}
+
+.container-texto p {
+      font-size: clamp(1rem, 3vw, 1.2rem); /* Texto ajustável */
+    color: var(--cor-texto-apoio);
+    line-height: 1.8;
+}
+
+.linha-detalhe {
+      height: 4px;
+    /* MUDANÇA MASTER: A linha acompanha o texto, nunca vaza da tela */
+    width: 100%; 
+    max-width: 300px; /* No PC ela fica elegante, no mobile ela encolhe */
+    background-color: var(--cor-primaria);
+    margin: 35px auto 0;
+    box-shadow: 0 0 15px rgba(211, 47, 47, 0.6);
+}
+
+/* 5. NOSSA HISTÓRIA */
+.galeria {
+    display: flex;
+    flex-direction: row; /* Mantém Filtros na esquerda e Carrossel na direita */
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 60px 5%;
+    gap: 40px;
+    background-color: var(--cor-fundo-suave); /* CORRIGIDO: Sintaxe da variável */
+}
+
+.fotos {
+    display: flex;
+    flex-direction: column;
+    width: 300px; /* Largura fixa para a coluna de controles no PC */
+    align-items: center; /* CENTRALIZA TUDO NO EIXO X (Horizontal) */
+    text-align: center;
+}
+
+.filtros {
+    width: 100%; /* Ocupa a largura da div .fotos */
+    display: flex;
+    flex-direction: column; /* Botões um embaixo do outro */
+    align-items: center;    /* CENTRALIZA OS BOTÕES NA COLUNA */
+    margin-top: 20px;
+    gap: 10px;              /* Espaçamento moderno entre botões */
+}
+
+.filtros button {
+    background: transparent;
+    border: 2px solid var(--cor-primaria);
+    color: var(--cor-texto-principal);
+    padding: 12px 25px;
+    width: 100%;            /* Faz todos os botões terem o mesmo tamanho */
+    max-width: 220px;       /* Limita a largura para estética premium */
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: var(--transicao-padrao);
+}
+
+.filtros button:hover {
+    background: var(--cor-primaria);
+    color: white;
+    transform: scale(1.05); /* Feedback visual de Master */
+}
+
+/* RESPONSIVIDADE (O PULO DO GATO) */
+@media (max-width: 768px) {
+    .galeria {
+        flex-direction: column; /* No celular, vira uma coluna só */
+        padding: 40px 20px;
+    }
+
+    .fotos {
+        width: 100%;
+    }
+
+    .filtros {
+        flex-direction: row;  /* Botões ficam lado a lado no celular */
+        flex-wrap: wrap;      /* Se não couber, pula linha */
+        justify-content: center;
+    }
+
+    .filtros button {
+        width: auto;          /* Botão volta ao tamanho do texto no celular */
+        min-width: 120px;
+        padding: 8px 15px;
+    }
+}
+
+/* 6. CARROSSEL */
+.bx-carrossel {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    /* Garante que o Zoom 2x apareça */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.container {
+    width: 100vw;
+    /* Ocupa 100% da div onde foi colocado, não a tela toda */
+    height: 450px;
+    overflow: hidden;
+    /* MÁGICA: Corta as fotos que saírem desta div */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carrossel {
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.item {
+    width: var(--width, 150px);
+    height: var(--height, 200px);
+    position: absolute;
+    /* Começa no centro e movemos com o transform */
+    left: 100%;
+    animation: autoRun 20s linear infinite;
+    animation-delay: calc((20s / var(--quantity)) * (var(--delay) / 1s) * -1) !important;
+}
+
+.item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transition: var(--transition);
+}
+
+/* ANIMAÇÃO BLINDADA: Funciona em qualquer tela usando translateX */
+@keyframes autoRun {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(-1500%);
+    }
+}
+
+/*
+.grid-fotos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.foto-item {
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid var(--cor-borda);
+    border-radius: 4px;
+    /* Bordas levemente arredondadas são tendência 
+}
+
+.foto-item img {
+    width: 100%;
+    height: 300px;
+    /* Altura fixa para manter o grid alinhado 
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.foto-item:hover img {
+    transform: scale(1.1);
+}
+
+/* 6. MODAL (FOTO AMPLIADA) 
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    * Efeito Master: Desfoca o fundo 
+}
+
+#img-modal {
+    max-width: 90%;
+    max-height: 80%;
+    border: 3px solid var(--cor-primaria);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 1);
+}
+
+.fechar {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    color: white;
+    font-size: 50px;
+    cursor: pointer;
+    transition: color var(--transicao-padrao);
+}
+
+.fechar:hover {
+    color: var(--cor-primaria);
+}*/
+
+/* 7. FOOTER*/
+
+.contato {
+    background-color: var(--cor-fundo-suave);
+    width: 100%;
+    min-height: 350px; /* min-height é melhor que height fixo */
+    border-top: 3px solid var(--cor-borda);
+    display: flex;
+    align-items: center;
+    padding: 60px 5%;
+}
+
+
+.contato-container {
+    display: flex;
+    flex-direction: row; /* Lado a lado no PC */
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 40px; /* Use gap em vez de margin-left gigante */
+}
+
+.redes-sociais {
+    display: flex;
+    gap: 40px;
+    /* Aumentei o espaço entre eles para acompanhar o tamanho */
+    align-items: center;
+    justify-content: flex-start;
+    /* Alinhados à esquerda junto com o texto */
+}
+
+.redes-sociais a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Criamos um box invisível de 80x80 para garantir o alinhamento */
+    width: 100px;
+    height: 100px;
+    text-decoration: none;
+}
+
+.redes-sociais a img {
+    width: 80px !important;
+    height: 80px !important;
+    min-width: 80px !important;
+    /* Garante que não encolha */
+    min-height: 80px !important;
+    object-fit: contain !important;
+    /* Mantém a proporção sem achatar */
+    display: block;
+}
+
+/* Efeito de flutuação no hover */
+.redes-sociais a:hover img {
+    transform: scale(1.15) translateY(-50px);
+}
+
+/* BLOCO DO MAPA */
+.mapa-sede {
+    flex: 1.5;
+    /* Mapa ganha destaque lateral */
+    height: 300px;
+    /* Mapa grande e imponente dentro dos 500px */
+    width: 100%;
+    margin-left: 400px;
+
+}
+
+.mapa-sede iframe {
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--cor-borda);
+    border-radius: 8px;
+    filter: invert(90%) hue-rotate(180deg) contrast(90%);
+    /* Google Maps em Dark Mode */
+   
+}
+
+/* --- AJUSTE DE RESPONSIVIDADE --- */
+@media (max-width: 768px) {
+    
+/* --- 1. RESPONSIVIDADE HERO --- */
+    .hero {
+        height: 100vh;
+        /* Mantém tela cheia no celular */
+    }
+
+    #video-fundo {
+        width: 100%;
+        height: 100vh;
+        /* Força a altura no mobile */
+        object-fit: cover;
+    }
+
+    .logo {
+        width: 50%;
+        /* Logo ganha destaque no celular */
+    }
+        .sobre {
+        padding: 60px 15px; /* Reduz o respiro no celular */
+    }
+    .container-texto h2 {
+        letter-spacing: 2px; /* Diminui o espaçamento para caber na linha */
+    }
+    .redes-sociais {
+        justify-content: center;
+        /* Centraliza no mobile */
+        gap: 20px;
+    }
+
+    .redes-sociais a img {
+        width: 60px !important;
+        /* Reduz um pouco no celular para não apertar */
+        height: 60px !important;
+    }
+/* --- 7. RESPONSIVIDADE DO FOOTER (O PULO DO GATO) --- */
+
+    .contato-container {
+        flex-direction: column; /* Empilha no tablet/celular */
+        text-align: center;
+        gap: 50px;
+    }
+
+    .contato-info p {
+        margin: 0 auto 30px; /* Centraliza o parágrafo no mobile */
+    }
+
+    .redes-sociais {
+        justify-content: center; /* Centraliza ícones no mobile */
+    }
+
+    .mapa-sede {
+        margin-left: 0; /* REMOVE O ERRO: No mobile não pode ter margem lateral */
+        width: 100%;
+        max-width: 500px; /* Mapa não fica gigante no celular */
+    }
+    
+    .contato-info h2 {
+        font-size: 2.2rem;
+    }
+}
+
