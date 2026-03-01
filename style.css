@@ -72,29 +72,57 @@ body {
     z-index: 2;
 }
 
-.logo {
+.brand-group {
     position: absolute;
-    /* Flutua sobre o vídeo e a máscara */
-    top: 30px;
-    /* Distância da base do vídeo */
-    right: 30px;
-    /* Distância da lateral direita */
-    height: 100px;
-    /* Tamanho imponente para o canto */
-    width: auto;
-    z-index: 10;
-    /* Garante que fique acima da máscara */
-    filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.8));
-    /* Sombra para destacar do asfalto/vídeo */
-    transition: transform var(--transicao-padrao);
-    cursor: pointer;
+    bottom: 40px;
+    /* Distância do fundo do vídeo */
+    right: 40px;
+    /* Distância da borda direita */
+    display: flex;
+    flex-direction: column;
+    /* Logo em cima, bandeiras embaixo */
+    align-items:flex-end;
+    /* Alinha tudo pela direita */
+    z-index: 20;
+    cursor:pointer;
 }
 
+/* Ajuste da Logo para trabalhar dentro do grupo */
+.logo {
+    position: static;
+    /* Sai do absolute individual para obedecer ao grupo */
+    height: 90px;
+    /* Tamanho que definimos para o vídeo grande */
+    width: auto;
+    margin-bottom: 15px;
+    /* Espaço entre a logo e as bandeiras */
+    filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.9));
+    transition: transform 0.3s ease;
+}
 
-.logo:hover {
-    transform: scale(2);
-    /* Feedback visual sutil */
+/* Container das Bandeiras */
+.flags-container {
+    display: flex;
+    gap: 12px;
+    /* Espaço entre as duas bandeiras */
+}
 
+.mini-flag {
+    width: 30px;
+    /* Tamanho discreto de expedição */
+    height: auto;
+    border-radius: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* Efeito Master: Ficam meio cinzas para não "quebrar" o clima Dark */
+    filter: grayscale(40%) brightness(0.7);
+    transition: all 0.3s ease;
+}
+
+/* No hover, elas ganham vida */
+.mini-flag:hover {
+    filter: grayscale(0%) brightness(1.1);
+    transform: scale(1.2);
+    box-shadow: 0 0 10px var(--cor-primaria);
 }
 
 /* 4. SOBRE NÓS */
@@ -170,9 +198,10 @@ body {
     justify-content: center;
     width: 100%;
     padding: 60px 5%;
+  
     gap: 40px;
     background-color: var(--cor-fundo-suave);
-    /* CORRIGIDO: Sintaxe da variável */
+  
 }
 
 .fotos {
@@ -183,6 +212,8 @@ body {
     align-items: center;
     /* CENTRALIZA TUDO NO EIXO X (Horizontal) */
     text-align: center;
+    padding-left: 10px;
+   
 }
 
 .filtros {
@@ -193,9 +224,10 @@ body {
     /* Botões um embaixo do outro */
     align-items: center;
     /* CENTRALIZA OS BOTÕES NA COLUNA */
-    margin-top: 20px;
+    margin: 30px;
     gap: 10px;
     /* Espaçamento moderno entre botões */
+      
 }
 
 .filtros button {
@@ -252,12 +284,17 @@ body {
 .bx-carrossel {
     width: 100%;
     height: 250px;
-    overflow: hidden;
+   
     /* Garante que o Zoom 2x apareça */
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
+       height: 350px; /* Altura maior que a foto para aguentar o zoom de 1.5x */
+    overflow: visible; 
+}
+.bx-carrossel:hover .item {
+    animation-play-state: paused;
 }
 
 
@@ -289,8 +326,21 @@ body {
     left: 100%;
     animation: autoRun 20s linear infinite;
     animation-delay: calc((20s / var(--quantity)) * (var(--delay) / 1s) * -1) !important;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                z-index 0s, 
+                filter 0.3s ease;
 }
+/* Efeito ao passar o mouse na imagem específica */
+.item:hover {
+    z-index: 1000; /* Garante que a foto aumentada fique na frente de todas as outras */
+   }
 
+.item:hover img {
+    transform: scale(2.5); /* Aumenta 1.5x o tamanho original */
+   
+    border: 2px solid var(--cor-primaria); /* Borda sólida para destacar */
+    cursor: pointer;
+}
 .item img {
     width: 100%;
     height: 100%;
@@ -396,7 +446,8 @@ body {
     /* Horizontal */
     align-items: center;
     justify-content: space-between;
-    width: 100vw;
+    width: 100%;
+  
     gap: 60px;
 }
 
@@ -475,13 +526,17 @@ body {
     }
 }
 
-.logo {
-    bottom: 20px;
-    /* Um pouco mais perto da borda no celular */
-    right: 20px;
-    height: 70px;
-    /* Menor no celular para não cobrir a ação do vídeo vertical */
-}
+.brand-group {
+     top: 15px;
+        right: 15px;
+    }
+    .logo {
+        height: 60px;
+    }
+    .mini-flag {
+        width: 22px;
+    }
+
 
 .sobre {
     padding: 60px 15px;
@@ -508,8 +563,8 @@ body {
 /* --- 7. RESPONSIVIDADE DO FOOTER (O PULO DO GATO) --- */
 
 .contato-container {
-    flex-direction: column;
-    /* Empilha no tablet/celular */
+    flex-direction: row;
+ 
     text-align: center;
     gap: 50px;
 }

@@ -20,21 +20,30 @@
         <!-- Navegação (Opcional, mas recomendado para SEO) -->
     </header>
 
-   <section class="hero">
-    <!-- VÍDEO PARA DESKTOP (PC) -->
-    <video autoplay muted loop playsinline class="video-fundo desktop-video" poster="./imagens/poster-pc.jpg">
-        <source src="./imagens/mideas/" type="video/mp4">
-    </video>
+    <section class="hero">
+        <!-- VÍDEO PARA DESKTOP (PC) -->
+        <video autoplay muted loop playsinline class="video-fundo desktop-video" poster="./imagens/poster-pc.jpg">
+            <source src="./imagens/mideas/viagemrio.mp4" type="video/mp4">
+        </video>
 
-    <!-- VÍDEO PARA MOBILE (CELULAR) -->
-    <video autoplay muted loop playsinline class="video-fundo mobile-video" poster="./imagens/poster-mobile.jpg">
-        <source src="./imagens/mideas/marcelo.mp4" type="video/mp4">
-    </video>
+        <!-- VÍDEO PARA MOBILE (CELULAR) -->
+        <video autoplay muted loop playsinline class="video-fundo mobile-video" poster="./imagens/poster-mobile.jpg">
+            <source src="./imagens/mideas/marcelo.mp4" type="video/mp4">
+        </video>
 
-    <div class="mascara"></div>
-    <img src="./imagens/DARK TOOLS MOTORCYCLE FLAG.jpg" alt="Logo Darktools MC" class="logo">
-</section>
+        <div class="mascara"></div>
 
+        <div class="brand-group">
+            <!-- Sua Logo Principal -->
+            <img src="imagens/DARK TOOLS MOTORCYCLE FLAG.jpg" alt="Logo Darktools MC" class="logo">
+
+            <!-- As Bandeirinhas (Usando CDN para garantir que carreguem no GitHub sem erro de pasta) -->
+            <div class="flags-container">
+                <img src="./imagens/logo/brasil.png" alt="Brasil" class="mini-flag">
+                <img src="./imagens/logo/grecia.png" alt="Grécia" class="mini-flag">
+            </div>
+        </div>
+    </section>
 
     <section class="sobre">
         <div class="container-texto">
