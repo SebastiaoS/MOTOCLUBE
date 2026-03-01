@@ -22,34 +22,44 @@
 
 body {
     background-color: var(--cor-fundo-abs);
-    font-family: 'Segoe UI', Roboto, sans-serif;
-    /* Fallback melhorado */
+    font-family: 'Oswald', sans-serif;
+    /* Recomendado usar Oswald para o tema MC */
     color: var(--cor-texto-principal);
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
 /* 3. HERO SECTION (VÍDEO E LOGO) */
 .hero {
     position: relative;
     width: 100%;
-    height: 100vh;
+    height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
 }
 
-#video-fundo {
+/* Configuração base para ambos */
+.video-fundo {
     position: absolute;
     top: 0;
+    /* Cola o início do vídeo no topo da tela */
     left: 0;
     width: 100%;
     height: 100%;
+
+    /* MÁGICA MASTER: Garante que o vídeo cubra tudo e foca na parte de CIMA */
     object-fit: cover;
     object-position: top;
-    filter: grayscale(60%) brightness(0.5);
-    /* Master Tip: Escurecer o vídeo destaca a logo */
+
     z-index: 1;
+    filter: brightness(0.4) contrast(1.1);
+}
+
+/* PADRÃO: Esconde o vídeo de celular no PC */
+.mobile-video {
+    display: none;
 }
 
 .mascara {
@@ -63,17 +73,28 @@ body {
 }
 
 .logo {
-    height: 35%;
-
+    position: absolute;
+    /* Flutua sobre o vídeo e a máscara */
+    top: 30px;
+    /* Distância da base do vídeo */
+    right: 30px;
+    /* Distância da lateral direita */
+    height: 100px;
+    /* Tamanho imponente para o canto */
     width: auto;
-    z-index: 3;
-    position: relative;
+    z-index: 10;
+    /* Garante que fique acima da máscara */
+    filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.8));
+    /* Sombra para destacar do asfalto/vídeo */
     transition: transform var(--transicao-padrao);
+    cursor: pointer;
 }
+
 
 .logo:hover {
     transform: scale(2);
     /* Feedback visual sutil */
+
 }
 
 /* 4. SOBRE NÓS */
@@ -89,23 +110,26 @@ body {
 }
 
 .container-texto {
-      /* O SEGREDO: 90% da tela no celular, mas no máximo 800px no PC */
-    width: 90%; 
-    max-width: 800px; 
+    /* O SEGREDO: 90% da tela no celular, mas no máximo 800px no PC */
+    width: 90%;
+    max-width: 800px;
     margin: 0 auto;
 }
 
 .container-texto p {
     /* CLAMP PARA TEXTO: Garante legibilidade em qualquer dispositivo */
-    font-size: clamp(1rem, 2.5vw, 1.2rem); 
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
     color: var(--cor-texto-apoio);
-    line-height: 1.8; /* Espaçamento entre linhas para leitura confortável */
-    max-width: 700px; /* Evita que a linha de leitura fique longa demais no PC */
+    line-height: 1.8;
+    /* Espaçamento entre linhas para leitura confortável */
+    max-width: 700px;
+    /* Evita que a linha de leitura fique longa demais no PC */
     margin: 0 auto;
 }
 
 .container-texto h2 {
-    font-size: clamp(1.8rem, 5vw, 2.5rem); /* Fonte dinâmica: diminui no celular e cresce no PC */
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    /* Fonte dinâmica: diminui no celular e cresce no PC */
     letter-spacing: 4px;
     margin-bottom: 25px;
     color: var(--cor-primaria);
@@ -113,22 +137,25 @@ body {
 }
 
 .container-texto p {
-      font-size: clamp(1rem, 3vw, 1.2rem); /* Texto ajustável */
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    /* Texto ajustável */
     color: var(--cor-texto-apoio);
     line-height: 1.8;
 }
 
 .container-texto p {
-      font-size: clamp(1rem, 3vw, 1.2rem); /* Texto ajustável */
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    /* Texto ajustável */
     color: var(--cor-texto-apoio);
     line-height: 1.8;
 }
 
 .linha-detalhe {
-      height: 4px;
+    height: 4px;
     /* MUDANÇA MASTER: A linha acompanha o texto, nunca vaza da tela */
-    width: 100%; 
-    max-width: 300px; /* No PC ela fica elegante, no mobile ela encolhe */
+    width: 100%;
+    max-width: 300px;
+    /* No PC ela fica elegante, no mobile ela encolhe */
     background-color: var(--cor-primaria);
     margin: 35px auto 0;
     box-shadow: 0 0 15px rgba(211, 47, 47, 0.6);
@@ -137,30 +164,38 @@ body {
 /* 5. NOSSA HISTÓRIA */
 .galeria {
     display: flex;
-    flex-direction: row; /* Mantém Filtros na esquerda e Carrossel na direita */
+    flex-direction: row;
+    /* Mantém Filtros na esquerda e Carrossel na direita */
     align-items: center;
     justify-content: center;
     width: 100%;
     padding: 60px 5%;
     gap: 40px;
-    background-color: var(--cor-fundo-suave); /* CORRIGIDO: Sintaxe da variável */
+    background-color: var(--cor-fundo-suave);
+    /* CORRIGIDO: Sintaxe da variável */
 }
 
 .fotos {
     display: flex;
     flex-direction: column;
-    width: 300px; /* Largura fixa para a coluna de controles no PC */
-    align-items: center; /* CENTRALIZA TUDO NO EIXO X (Horizontal) */
+    width: 300px;
+    /* Largura fixa para a coluna de controles no PC */
+    align-items: center;
+    /* CENTRALIZA TUDO NO EIXO X (Horizontal) */
     text-align: center;
 }
 
 .filtros {
-    width: 100%; /* Ocupa a largura da div .fotos */
+    width: 100%;
+    /* Ocupa a largura da div .fotos */
     display: flex;
-    flex-direction: column; /* Botões um embaixo do outro */
-    align-items: center;    /* CENTRALIZA OS BOTÕES NA COLUNA */
+    flex-direction: column;
+    /* Botões um embaixo do outro */
+    align-items: center;
+    /* CENTRALIZA OS BOTÕES NA COLUNA */
     margin-top: 20px;
-    gap: 10px;              /* Espaçamento moderno entre botões */
+    gap: 10px;
+    /* Espaçamento moderno entre botões */
 }
 
 .filtros button {
@@ -168,8 +203,10 @@ body {
     border: 2px solid var(--cor-primaria);
     color: var(--cor-texto-principal);
     padding: 12px 25px;
-    width: 100%;            /* Faz todos os botões terem o mesmo tamanho */
-    max-width: 220px;       /* Limita a largura para estética premium */
+    width: 100%;
+    /* Faz todos os botões terem o mesmo tamanho */
+    max-width: 220px;
+    /* Limita a largura para estética premium */
     cursor: pointer;
     font-weight: bold;
     text-transform: uppercase;
@@ -179,13 +216,15 @@ body {
 .filtros button:hover {
     background: var(--cor-primaria);
     color: white;
-    transform: scale(1.05); /* Feedback visual de Master */
+    transform: scale(1.05);
+    /* Feedback visual de Master */
 }
 
 /* RESPONSIVIDADE (O PULO DO GATO) */
 @media (max-width: 768px) {
     .galeria {
-        flex-direction: column; /* No celular, vira uma coluna só */
+        flex-direction: column;
+        /* No celular, vira uma coluna só */
         padding: 40px 20px;
     }
 
@@ -194,13 +233,16 @@ body {
     }
 
     .filtros {
-        flex-direction: row;  /* Botões ficam lado a lado no celular */
-        flex-wrap: wrap;      /* Se não couber, pula linha */
+        flex-direction: row;
+        /* Botões ficam lado a lado no celular */
+        flex-wrap: wrap;
+        /* Se não couber, pula linha */
         justify-content: center;
     }
 
     .filtros button {
-        width: auto;          /* Botão volta ao tamanho do texto no celular */
+        width: auto;
+        /* Botão volta ao tamanho do texto no celular */
         min-width: 120px;
         padding: 8px 15px;
     }
@@ -339,7 +381,8 @@ body {
 .contato {
     background-color: var(--cor-fundo-suave);
     width: 100%;
-    min-height: 350px; /* min-height é melhor que height fixo */
+    min-height: 350px;
+    /* min-height é melhor que height fixo */
     border-top: 3px solid var(--cor-borda);
     display: flex;
     align-items: center;
@@ -349,13 +392,12 @@ body {
 
 .contato-container {
     display: flex;
-    flex-direction: row; /* Lado a lado no PC */
+    flex-direction: row;
+    /* Horizontal */
     align-items: center;
     justify-content: space-between;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    gap: 40px; /* Use gap em vez de margin-left gigante */
+    width: 100vw;
+    gap: 60px;
 }
 
 .redes-sociais {
@@ -397,9 +439,8 @@ body {
 .mapa-sede {
     flex: 1.5;
     /* Mapa ganha destaque lateral */
-    height: 300px;
+    height: 250px;
     /* Mapa grande e imponente dentro dos 500px */
-    width: 100%;
     margin-left: 400px;
 
 }
@@ -411,70 +452,86 @@ body {
     border-radius: 8px;
     filter: invert(90%) hue-rotate(180deg) contrast(90%);
     /* Google Maps em Dark Mode */
-   
+    /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);*/
 }
 
 /* --- AJUSTE DE RESPONSIVIDADE --- */
 @media (max-width: 768px) {
-    
-/* --- 1. RESPONSIVIDADE HERO --- */
+
+    /* --- 1. RESPONSIVIDADE HERO --- */
+    .desktop-video {
+        display: none;
+        /* Esconde o vídeo pesado do PC */
+    }
+
+    .mobile-video {
+        display: block;
+        /* Mostra o vídeo vertical leve */
+    }
+
     .hero {
         height: 100vh;
-        /* Mantém tela cheia no celular */
-    }
-
-    #video-fundo {
-        width: 100%;
-        height: 100vh;
-        /* Força a altura no mobile */
-        object-fit: cover;
-    }
-
-    .logo {
-        width: 50%;
-        /* Logo ganha destaque no celular */
-    }
-        .sobre {
-        padding: 60px 15px; /* Reduz o respiro no celular */
-    }
-    .container-texto h2 {
-        letter-spacing: 2px; /* Diminui o espaçamento para caber na linha */
-    }
-    .redes-sociais {
-        justify-content: center;
-        /* Centraliza no mobile */
-        gap: 20px;
-    }
-
-    .redes-sociais a img {
-        width: 60px !important;
-        /* Reduz um pouco no celular para não apertar */
-        height: 60px !important;
-    }
-/* --- 7. RESPONSIVIDADE DO FOOTER (O PULO DO GATO) --- */
-
-    .contato-container {
-        flex-direction: column; /* Empilha no tablet/celular */
-        text-align: center;
-        gap: 50px;
-    }
-
-    .contato-info p {
-        margin: 0 auto 30px; /* Centraliza o parágrafo no mobile */
-    }
-
-    .redes-sociais {
-        justify-content: center; /* Centraliza ícones no mobile */
-    }
-
-    .mapa-sede {
-        margin-left: 0; /* REMOVE O ERRO: No mobile não pode ter margem lateral */
-        width: 100%;
-        max-width: 500px; /* Mapa não fica gigante no celular */
-    }
-    
-    .contato-info h2 {
-        font-size: 2.2rem;
+        /* Garante tela cheia no mobile */
     }
 }
 
+.logo {
+    bottom: 20px;
+    /* Um pouco mais perto da borda no celular */
+    right: 20px;
+    height: 70px;
+    /* Menor no celular para não cobrir a ação do vídeo vertical */
+}
+
+.sobre {
+    padding: 60px 15px;
+    /* Reduz o respiro no celular */
+}
+
+.container-texto h2 {
+    letter-spacing: 2px;
+    /* Diminui o espaçamento para caber na linha */
+}
+
+.redes-sociais {
+    justify-content: center;
+    /* Centraliza no mobile */
+    gap: 20px;
+}
+
+.redes-sociais a img {
+    width: 60px !important;
+    /* Reduz um pouco no celular para não apertar */
+    height: 60px !important;
+}
+
+/* --- 7. RESPONSIVIDADE DO FOOTER (O PULO DO GATO) --- */
+
+.contato-container {
+    flex-direction: column;
+    /* Empilha no tablet/celular */
+    text-align: center;
+    gap: 50px;
+}
+
+.contato-info p {
+    margin: 0 auto 30px;
+    /* Centraliza o parágrafo no mobile */
+}
+
+.redes-sociais {
+    justify-content: center;
+    /* Centraliza ícones no mobile */
+}
+
+.mapa-sede {
+    margin-left: 0;
+    /* REMOVE O ERRO: No mobile não pode ter margem lateral */
+    width: 100%;
+    max-width: 500px;
+    /* Mapa não fica gigante no celular */
+}
+
+.contato-info h2 {
+    font-size: 2.2rem;
+}
